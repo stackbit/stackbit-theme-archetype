@@ -1,0 +1,10 @@
+.wrapper .inner .content img,
+#footer .content .inner .about img,
+.wrapper .inner .major img,
+.posts .post .content img,
+.wrapper .inner img,
+.wrapper .inner .features li img,
+#banner .content .inner header img,
+.sidebar section img{
+    max-width: 100%;
+}

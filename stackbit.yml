@@ -1,0 +1,537 @@
+stackbitVersion: ~0.2.34
+uploadDir: images
+metadata:
+  title: Archetype
+  description: a multi-layout theme with posts
+  author: Pixelarity
+  authorURL: 'https://pixelarity.com'
+  palettes:
+    blue:
+      images:
+        small: images/demo-blue-256x192.png
+        large: images/demo-blue-1024x768.png
+    green:
+      images:
+        small: images/demo-green-256x192.png
+        large: images/demo-green-1024x768.png
+models:
+  config:
+    type: config
+    label: Config
+    fields:
+      - type: string
+        name: landing_template
+        label: Landing Template
+        required: true
+        hidden: true
+        default: home
+      - type: enum
+        name: palette
+        label: Color Palette
+        options:
+          - blue
+          - green
+        required: true
+        default: blue
+        description: The color palette used for the site
+      - type: object
+        name: palettes
+        label: Palettes
+        hidden: true
+        fields:
+          - type: palette
+            name: blue
+            label: Blue
+          - type: palette
+            name: green
+            label: Green
+  footer:
+    type: data
+    file: footer.yml
+    label: Footer Configuration
+    fields:
+      - type: object
+        name: about
+        label: About Section
+        fields:
+          - type: boolean
+            name: enabled
+            label: Display About Section
+            default: false
+            description: Displays the about section in the site footer
+          - type: string
+            name: title
+            label: Section Title
+            description: The bold text displayed at the top of the about section
+          - type: markdown
+            name: text
+            label: Section Text
+            description: The text displayed below the section title
+          - type: list
+            name: actions
+            label: Section Action Buttons
+            items:
+              type: action
+              labelField: label
+      - type: object
+        name: contact_methods
+        label: Contact Methods Section
+        fields:
+          - type: boolean
+            name: enabled
+            label: Display Contact Methods
+            default: false
+            description: Displays the contact methods section
+          - type: list
+            name: methods_col1
+            label: Contact Methods Column 1
+            description: A list of contact methods to be displayed in the first column
+            items:
+              type: reference
+              labelField: title
+              models:
+                - contact_with_link
+                - contact_with_text
+          - type: list
+            name: methods_col2
+            label: Contact Methods Column 2
+            description: A list of contact methods to be displayed in the second column
+            items:
+              type: reference
+              labelField: title
+              models:
+                - contact_with_link
+                - contact_with_text
+      - type: object
+        name: copyright
+        label: Copyright Section
+        description: The copyright section displayed at the bottom of the site footer
+        fields:
+          - type: boolean
+            name: enabled
+            label: Display Copyright Text
+            default: false
+            description: Displays the copyright text at the bottom of the page
+          - type: string
+            name: text
+            label: Copyright Text
+            description: The copyright text displayed next to the footer menu
+  home:
+    type: page
+    label: Home
+    hideContent: true
+    singleInstance: true
+    file: index.md
+    template: home
+    fields:
+      - type: string
+        name: title
+        label: Page Title
+        required: true
+      - type: object
+        name: banner
+        label: Page Banner
+        description: The banner displayed at the top of the landing page
+        fields:
+          - type: string
+            name: title
+            label: Banner Title
+            required: true
+            description: The bold text displayed at the top of the banner
+          - type: markdown
+            name: subtitle
+            label: Banner Subtitle
+            description: The text displayed below the banner title
+          - type: list
+            name: actions
+            label: Banner Action Buttons
+            items:
+              type: action_huge
+              labelField: label
+      - type: list
+        name: sections
+        label: Sections
+        description: Home Sections
+        items:
+          type: reference
+          labelField: section_id
+          models:
+            - features
+            - cta
+            - posts
+  page:
+    type: page
+    label: Page
+    template: page
+    exclude: posts/**
+    fields:
+      - type: string
+        name: title
+        label: Page Title
+        required: true
+        description: The bold text displayed at the top of the page
+      - type: markdown
+        name: subtitle
+        label: Page Subtitle
+        description: The text displayed below the page title
+      - type: object
+        name: content_img
+        label: Content Image
+        description: The image displayed above the page content
+        fields:
+          - type: boolean
+            name: enabled
+            label: Display Content Image
+            default: false
+            description: Displays the page content image
+          - type: image
+            name: path
+            label: Image
+          - type: string
+            name: url
+            label: URL
+            widget: url
+            default: '#'
+            description: The URL used in the image hyperlink
+      - type: object
+        name: sidebar
+        label: Sidebar
+        description: The sidebar displayed beside the page content
+        fields:
+          - type: boolean
+            name: enabled
+            label: Display Page Sidebar
+            default: false
+            description: Displays the page sidebar
+          - type: enum
+            name: side
+            label: Sidebar Position
+            options:
+              - left
+              - right
+            default: left
+            description: The side of the page the sidebar is to be displayed
+  post:
+    type: page
+    label: Post
+    folder: posts
+    template: page
+    fields:
+      - type: string
+        name: title
+        label: Post Title
+        required: true
+        description: The bold text displayed at the top of the post
+      - type: markdown
+        name: subtitle
+        label: Post Subtitle
+        description: The text displayed below the post title
+      - type: markdown
+        name: excerpt
+        label: Post Excerpt
+        description: The excerpt displayed in any post thumbnails
+      - type: object
+        name: content_img
+        label: Content Image
+        description: The image displayed above the post content
+        fields:
+          - type: boolean
+            name: enabled
+            label: Display Content Image
+            default: false
+            description: Displays the post content image
+          - type: image
+            name: path
+            label: Image
+          - type: string
+            name: url
+            label: URL
+            widget: url
+            default: '#'
+            description: The URL used in the image hyperlink
+      - type: image
+        name: alt_img
+        label: Alternate Image
+        description: The image displayed in any post thumbnails
+      - type: object
+        name: sidebar
+        label: Sidebar
+        description: The sidebar displayed beside the post content
+        fields:
+          - type: boolean
+            name: enabled
+            label: Display post Sidebar
+            default: false
+            description: Displays the post sidebar
+          - type: enum
+            name: side
+            label: Sidebar Position
+            options:
+              - left
+              - right
+            default: left
+            description: The side of the post the sidebar is to be displayed
+      - type: date
+        name: date
+        label: Post Date
+        required: true
+        description: The date the post was created
+      - type: boolean
+        name: show_in_home_posts
+        label: Show In Home Posts
+        default: false
+        description: Displays the post in the home posts section
+      - type: boolean
+        name: show_in_sidebar
+        label: Show In Sidebars
+        default: false
+        description: Displays the post ina all page sidebars
+  elements:
+    type: page
+    label: Elements
+    hideContent: true
+    singleInstance: true
+    file: elements.md
+    template: elements
+    fields:
+      - type: string
+        name: title
+        label: Page Title
+        required: true
+        description: The text displayed at the top of the page
+      - type: markdown
+        name: subtitle
+        label: Page Subtitle
+        description: The text displayed below the page title
+  action:
+    type: object
+    label: Action
+    labelField: label
+    fields:
+      - type: string
+        name: label
+        label: Button Label
+        required: true
+        description: The text displayed inside the button
+      - type: string
+        name: url
+        label: Button URL
+        widget: url
+      - type: boolean
+        name: is_primary
+        label: Is Primary
+        default: false
+        description: Gives the button a primary color
+      - type: boolean
+        name: is_scrolly
+        label: Is Scrolly
+        description: >-
+          Gives the button a scroll animation (If the button URL is a section
+          ID)
+  action_huge:
+    type: object
+    label: Action Huge
+    labelField: label
+    fields:
+      - type: string
+        name: label
+        label: Button Label
+        required: true
+        description: The text displayed inside the button
+      - type: string
+        name: url
+        label: Button URL
+        widget: url
+      - type: boolean
+        name: is_primary
+        label: Is Primary
+        default: false
+        description: Gives the button a primary color
+      - type: boolean
+        name: is_scrolly
+        label: Is Scrolly
+        default: false
+        description: >-
+          Gives the button a scroll animation (If the button URL is a section
+          ID)
+      - type: boolean
+        name: is_huge
+        label: Is Huge
+        default: false
+        description: Makes the button larger than a standard button
+  contact_with_link:
+    type: object
+    label: Contact With Link
+    labelField: title
+    fields:
+      - type: string
+        name: title
+        label: Method Title
+        required: true
+        description: The title of the contact method
+      - type: string
+        name: icon
+        label: Method Icon
+        description: (Font Awesom icon) The icon displayed beside the method title
+      - type: text
+        name: text
+        label: Method Description
+        required: true
+      - type: string
+        name: url
+        label: Method URL
+        widget: url
+        description: The URL used in the method link
+  contact_with_text:
+    type: object
+    label: Contact With Text
+    labelField: title
+    fields:
+      - type: string
+        name: title
+        label: Method Title
+        required: true
+        description: The title of the contact method
+      - type: string
+        name: icon
+        label: Method Icon
+        description: (Font Awesom icon) The icon displayed beside the method title
+      - type: text
+        name: text
+        label: Method Description
+        required: true
+  palette:
+    type: object
+    label: Palette
+    fields:
+      - type: object
+        name: sass
+        label: SASS
+        fields:
+          - type: color
+            name: gradient1
+            label: Gradient 1
+          - type: color
+            name: gradient2
+            label: Gradient 2
+          - type: color
+            name: accent1
+            label: accent 1
+          - type: color
+            name: accent2
+            label: accent 2
+          - type: color
+            name: accent3
+            label: accent 3
+  section:
+    type: object
+    label: Section
+    labelField: section_id
+    fields:
+      - type: string
+        name: section_id
+        label: Section ID
+        required: true
+      - type: string
+        name: component
+        label: Section Component
+        required: true
+        hidden: true
+  features:
+    type: object
+    label: Features Section
+    extends:
+      - section
+    fields:
+      - name: section_id
+        default: features
+      - type: list
+        name: features
+        label: Features
+        description: A list of features to be displayed in the section
+        items:
+          type: object
+          labelField: title
+          fields:
+            - type: string
+              name: title
+              label: Feature Title
+              required: true
+              description: The bold text displayed to the right of the feature icon
+            - type: object
+              name: icon
+              label: Feature Icon
+              description: The icon displayed beside the feature title
+              fields:
+                - type: boolean
+                  name: enabled
+                  label: Display Icon
+                  default: false
+                  description: Displays the feature icon
+                - type: string
+                  name: icon
+                  label: Icon
+                  description: Font Awesome icon
+                - type: enum
+                  name: style
+                  label: Iconn Style
+                  options:
+                    - style1
+                    - style2
+                    - style3
+                  description: Controls the icon color
+            - type: markdown
+              name: description
+              label: Feature Description
+              description: The text displayed next to the feature title
+      - name: component
+        const: features.html
+  cta:
+    type: object
+    label: CTA Section
+    extends:
+      - section
+    fields:
+      - name: section_id
+        default: cta
+      - type: string
+        name: title
+        label: Section Title
+        required: true
+        description: The bold text displayed above the section action buttons
+      - type: list
+        name: actions
+        label: Section Action Buttons
+        items:
+          type: action
+          labelField: label
+      - type: markdown
+        name: text
+        label: Section Text
+        description: The text displayed in the content portion of the section
+      - name: component
+        const: cta.html
+  posts:
+    type: object
+    label: Posts Section
+    extends:
+      - section
+    fields:
+      - name: section_id
+        default: posts
+      - type: string
+        name: title
+        label: Section Title
+        required: true
+        description: The bold text displayed at the top of the section
+      - type: markdown
+        name: subtitle
+        label: Section Subtitle
+        description: The text displayed below the section title
+      - name: component
+        const: posts.html
+stackbit_banner:
+  show_banner: true
+  name: Archetype
+  create_url: 'https://app.stackbit.com/wizard?theme=archetype'
+  github_url: 'https://github.com/stackbithq/stackbit-theme-archetype'

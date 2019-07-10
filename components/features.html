@@ -1,0 +1,13 @@
+<!-- One -->
+<section id="{{ include_dict.section.section_id }}" class="wrapper">
+    <div class="inner">
+        <ul class="features">
+            {% for feature in include_dict.section.features %}
+                <li>
+                    <h3{% if feature.icon.enabled %} class="icon {{ feature.icon.style }} {{ feature.icon.icon }}"{% endif %}>{{ feature.title }}</h3>
+                    {{ feature.description | markdownify }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>

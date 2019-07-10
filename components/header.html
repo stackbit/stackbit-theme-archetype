@@ -1,0 +1,10 @@
+<!-- Header -->
+<header id="header" {{ classNames({"alt": page.params.template == site.params.landing_template}) }}>
+    <h1 id="logo"><a href="{{ site.baseurl }}">{{ site.title }}</a></h1>
+    <nav id="nav">
+        {% set menu = site.menus.main %}
+        {% set include_dict = {'menu': menu, 'page': page} %}
+        {% include "menu.html" %}
+    </nav>
+    <a href="#navPanel" class="navPanelToggle"></a>
+</header>

@@ -1,0 +1,49 @@
+{% extends "body.html" %}
+
+{% block content %}
+
+    <!-- Main -->
+    <section id="main" class="wrapper{% if page.params.sidebar.enabled %} sidebar {{ page.params.sidebar.side }}{% endif %}">
+        <div class="inner">
+            <header class="major">
+                <h2>{{ page.title }}</h2>
+                {{ page.params.subtitle | markdownify }}
+            </header>
+            
+            <!-- Content -->
+            <div class="content">
+                {% if page.params.content_img.enabled %}
+                    <a href="{{ page.params.content_img.url | link | relative_url }}" class="image fit"><img src="{{ page.params.content_img.path | relative_url }}" alt="" /></a>
+                {% endif %}
+                {{ page.content }}
+            </div>
+            
+            {% if page.params.sidebar.enabled %}
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    
+                    {% for post in getPages("/posts") | where("show_in_sidebar", true) | sort(true, true, "date") %}
+                        <section>
+                            {% if post.alt_img %}
+                                <a href="{{ post.url | relative_url }}" class="image fit"><img src="{{ post.alt_img | relative_url }}" alt="" /></a>
+                            {% endif %}
+                            <h3>{{ post.title }}</h3>
+                            {{ post.excerpt | markdownify }}
+                            <footer>
+                                <ul class="actions">
+                                    <li><a href="{{ post.url | relative_url }}" class="button">Learn More</a></li>
+                                </ul>
+                            </footer>
+                        </section>
+                        {% if not loop.last %}
+                            <hr />
+                        {% endif %}
+                    {% endfor %}
+                    
+                </div>
+            {% endif %}
+            
+        </div>
+    </section>
+
+{% endblock %}

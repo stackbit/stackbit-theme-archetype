@@ -1,0 +1,23 @@
+<!-- Three -->
+<section id="{{ include_dict.section.section_id }}" class="wrapper">
+    <div class="inner">
+        <header class="major">
+            <h2>{{ include_dict.section.title }}</h2>
+            {{ include_dict.section.subtitle | markdownify }}
+        </header>
+        <div class="posts">
+            {% for post in getPages("/posts") | where("show_in_home_posts", true) | sort(true, true, "date") %}
+                <section class="post">
+                    {% if post.alt_img %}
+                        <a href="{{ post.url | relative_url }}" class="image"><img src="{{ post.alt_img | relative_url }}" alt="" /></a>
+                    {% endif %}
+                    <div class="content">
+                        <h3>{{ post.title }}</h3>
+                        {{ post.excerpt | markdownify }}
+                        <a href="{{ post.url | relative_url }}" class="button">More</a>
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,61 @@
+<!-- Footer -->
+<footer id="footer">
+    <div class="content">
+        <div class="inner">
+            {% if site.data.footer.about.enabled %}
+                <section class="about">
+                    <h3>{{ site.data.footer.about.title }}</h3>
+                    {{ site.data.footer.about.text | markdownify }}
+                    {% if site.data.footer.about.actions %}
+                        <ul class="actions">
+                            {% for action in site.data.footer.about.actions %}
+                                <li><a href="{% if action.url | starts_with('#') %}{{ action.url }}{% else %}{{ action.url | link | relative_url }}{% endif %}" {{ classNames("button", {"primary": action.is_primary}, {"scrolly": action.is_scrolly}) }}>{{ action.label }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </section>
+            {% endif %}
+            {% if site.data.footer.contact_methods.enabled %}
+                {% if site.data.footer.contact_methods.methods_col1 %}
+                    <ul class="icons bulleted">
+                        {% for method in site.data.footer.contact_methods.methods_col1 %}
+                            {% if method.type == 'contact_with_text' %}
+                                <li class="icon {{ method.icon }}">
+                                    <h3>{{ method.title }}</h3>
+                                    <p>{{ method.text | nl2br | safe }}</p>
+                                </li>
+                            {% elif method.type == 'contact_with_link' %}
+                                <li class="icon {{ method.icon }}">
+                                    <h3>{{ method.title }}</h3>
+                                    <p><a href="{{ method.url }}">{{ method.text | nl2br | safe }}</a></p>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% if site.data.footer.contact_methods.methods_col2 %}
+                    <ul class="icons bulleted">
+                        {% for method in site.data.footer.contact_methods.methods_col2 %}
+                            {% if method.type == 'contact_with_text' %}
+                                <li class="icon {{ method.icon }}">
+                                    <h3>{{ method.title }}</h3>
+                                    <p>{{ method.text | nl2br | safe }}</p>
+                                </li>
+                            {% elif method.type == 'contact_with_link' %}
+                                <li class="icon {{ method.icon }}">
+                                    <h3>{{ method.title }}</h3>
+                                    <p><a href="{{ method.url }}">{{ method.text | nl2br | safe }}</a></p>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <p class="copyright">{% if site.data.footer.copyright.enabled %}{{ site.data.footer.copyright.text | safe }}<br />{% endif %}
+        {% for item in site.menus.footer %}
+            <a href="{% if item.url | starts_with('#') %}{{ item.url }}{% else %}{{ item.url | relative_url }}{% endif %}">{{ item.title }}</a>{% if not loop.last %} | {% endif %}
+        {% endfor %}
+    </p>
+</footer>

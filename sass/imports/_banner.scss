@@ -1,0 +1,11 @@
+body.has-theme-bar {
+    #header{
+        z-index: 999;
+        margin-top: 60px;
+    }
+    #theme-bar{
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+    }
+}
