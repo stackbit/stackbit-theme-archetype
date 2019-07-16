@@ -9,7 +9,7 @@
                     {% if site.data.footer.about.actions %}
                         <ul class="actions">
                             {% for action in site.data.footer.about.actions %}
-                                <li><a href="{% if action.url | starts_with('#') %}{{ action.url }}{% else %}{{ action.url | link | relative_url }}{% endif %}" {{ classNames("button", {"primary": action.is_primary}, {"scrolly": action.is_scrolly}) }}>{{ action.label }}</a></li>
+                                <li><a href="{% if action.url | starts_with('#') %}{{ action.url }}{% else %}{{ action.url | relative_url }}{% endif %}" {{ classNames("button", {"primary": action.is_primary}, {"scrolly": action.is_scrolly}) }}>{{ action.label }}</a></li>
                             {% endfor %}
                         </ul>
                     {% endif %}

@@ -30,15 +30,15 @@ menus:
     - identifier: normal1
       title: Left Sidebar
       weight: 1
-      url: left-sidebar.html
+      url: "/left-sidebar"
     - identifier: normal2
       title: Right Sidebar
       weight: 2
-      url: right-sidebar.html
+      url: "/right-sidebar"
     - identifier: normal3
       title: No Sidebar
       weight: 3
-      url: no-sidebar.html
+      url: "/no-sidebar"
     - identifier: submenu
       title: Submenu
       weight: 4

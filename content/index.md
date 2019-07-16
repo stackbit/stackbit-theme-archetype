@@ -5,7 +5,7 @@ banner:
   subtitle: Sed magna in pharetra ultricies dolor sit consequat magna.
   actions:
     - label: Learn More
-      url: no-sidebar.md
+      url: "/no-sidebar"
       is_primary: false
       is_scrolly: false
       is_huge: true
@@ -36,7 +36,7 @@ sections:
     title: Ultrices ante sagittis nunc senectus libero netus
     actions:
       - label: How it works
-        url: contact.md
+        url: "/contact"
         is_scrolly: false
         is_primary: false
     text: Lorem ipsum dolor sit amet interdum mollis sapien. Sed ac risus. Phasellus lacinia, ullamcorper laoreet, lectus arcu pulvinar lorem ipsum interdum sed tempus sagittis lorem feugiat. In fringilla diet consectetur. Morbi libero orci, consectetur in odio maximus felis. Lorem ipsum ullamcorper laoreet, lectus arcu pulvinar lorem ipsum interdum sed tempus sagittis lorem feugiat. In fringilla diet consectetur.

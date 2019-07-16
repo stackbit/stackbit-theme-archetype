@@ -4,7 +4,7 @@ about:
   text: Lorem ipsum dolor sit amet interdum mollis sapien. Sed amet ac lorem ipsum interdum tempus sagittis lorem tempus.
   actions:
     - label: Learn More
-      url: no-sidebar.md
+      url: "/no-sidebar"
       is_primary: false
       is_scrolly: false
 contact_methods:
