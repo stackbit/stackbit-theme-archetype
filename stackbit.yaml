@@ -1,5 +1,12 @@
-stackbitVersion: ~0.2.34
+stackbitVersion: ~0.2.0
+ssgName: unibit
+buildCommand: unibit build
+publishDir: output
+staticDir: static
 uploadDir: images
+dataDir: data
+pagesDir: content
+pageLayoutKey: layout
 metadata:
   title: Archetype
   description: a multi-layout theme with posts
@@ -535,5 +542,3 @@ stackbit_banner:
   name: Archetype
   create_url: 'https://app.stackbit.com/create?theme=archetype'
   github_url: 'https://github.com/stackbithq/stackbit-theme-archetype'
-pagesDir: content
-staticDir: static
