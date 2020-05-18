@@ -1,6 +1,6 @@
 # Archetype
 
-A multipage theme for Stackbit. [Live Demo](https://themes.stackbit.com/demos/archetype/blue)
+A multi-layout theme with posts for Stackbit. [Live Demo](https://themes.stackbit.com/demos/archetype/blue)
 
 Click the button below to use this theme in Gatsby, Hugo or Jekyll via the Stackbit site builder:
 
